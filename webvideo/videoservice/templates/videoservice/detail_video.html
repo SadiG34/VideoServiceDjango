@@ -1,0 +1,180 @@
+
+{% extends 'videoservice/base.html' %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% load hitcount_tags %}
+{% load i18n %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<script src="button.js"></script>
+
+<!-- <div class=container-fluid>-->
+ <div class=container>
+  <div class="row mt-5">
+   <div class="col-md-8 col-sm-12 col-xs-12">
+           <div  class="video_class">
+            <video
+             id="my-video"
+             class="video-js"
+             controls
+             preload="auto"
+             width="800"
+             height="400"
+             poster="  "
+             data-setup="{}"
+            >
+          <source src="{{ object.file.url }}" type="video/mp4" />
+
+            </video>
+        </div>
+   </div>
+
+   <div class="col-md-4 col-sm-12 col-xs-12">
+        <h3 class="text-center mb-3">Похожие видео</h3>
+        {% for tag in tags %}
+            {% if object.pk != tag.pk %}
+                <div class="position-relative d-flex flex-row mb-5 py-2 border-bottom">
+                    <img src="{{ tag.thumbnail.url }}" width="100" height="50" />
+                    <h5 class="pl-3">{{ tag.title }}</h5>
+                    <a href="{% url 'video-detail' tag.pk %}" class="stretched-link"></a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="col-md-6 text-muted">
+
+    </div>
+    <!-- остальной HTML -->
+</div>
+    <div class="row">
+    <div class="row">
+    <div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="row mt-3">
+    <div class="col-md-8 col-sm-12">
+
+        <h5 class="mt-4">{{ object.title }}
+
+        {% if object.user == user %}
+          <a href="{% url 'video-update' object.pk %}" class="btn btn-outline-info ml-3"><i class="bi bi-pencil"></i></a>
+          <a href="{% url 'video-delete' object.pk %}" class="btn btn-outline-info ml-3"><i class="bi bi-trash"></i></a>
+        {% endif %}
+        {% if user.is_authenticated %}
+           <form action="{% url 'video_like' object.id %}" method="POST">
+            {% csrf_token %}
+            {% if post_is_liked %}
+             <span>
+                 <button class="Btn" type="submit" name="video_id" value="{{object.id}}">
+                  <span class="leftContainer">
+                    <svg fill="white" viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"></path></svg>
+                    <span class="like">Like</span>
+                  </span>
+                  <span class="likeCount">
+                    {{ number_of_likes }}
+                  </span>
+                </button>
+            {% else %}
+                 <span>
+                 <button class="Btn" type="submit" name="video_id" value="{{object.id}}">
+                  <span class="leftContainer">
+                    <svg fill="white" viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"></path></svg>
+                    <span class="like">Like</span>
+                  </span>
+                  <span class="likeCount">
+                    {{ number_of_likes }}
+                  </span>
+                </button>
+            {% endif %}
+
+           </form>
+          {% else %}
+            <a class="btn btn-outline-info" href="/accounts/login/">Войди, чтобы лайкнуть!</a><br>
+          {% endif %}
+        </h5>
+
+        <div class="user-header">
+          <img src="{{ object.user.profile.image.url }}" width="35" height="35" class="d-inline-block rounded-circle" alt="Profile">
+         @{{ object.user }}<br>
+        </div>
+        <span class="subs">{{ number_of_subscribers }} подписчиков</span>
+        {% if request.user.is_authenticated %}
+            {% if request.user != object.user %}
+              {% if user_is_subscribed %}
+                <form method="post" id="unsubscribeForm" action="{% url 'unsubscribe' pk=object.user.pk %}">
+                  {% csrf_token %}
+                  <button type="submit"  class="subscrube_button">Отписаться</button>
+                </form>
+              {% else %}
+                <form method="post" id="subscribeForm" action="{% url 'subscribe' pk=object.user.pk %}">
+                  {% csrf_token %}
+                <button type="submit" class="subscrube_button">
+                  <div class="svg-wrapper-1">
+                    <div class="svg-wrapper">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                      >
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path
+                          fill="currentColor"
+                          d="M13 14.062V22H4a8 8 0 0 1 9-7.938zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm5.793 6.914l3.535-3.535 1.415 1.414-4.95 4.95-3.536-3.536 1.415-1.414 2.12 2.121z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <span>Подписаться</span>
+                </button>
+                </form>
+              {% endif %}
+            {% endif %}
+        {% endif %}
+        <span> <b>Просмотров: {% get_hit_count for object %} &#128065; {{ object.hit_count.total_hits }} </b></span>
+        <br>
+        <br>
+            <div class="tags">
+                {% for tag in video.tag.all %}
+                Тэги: #<a href="{% url 'tag-list' tag.pk %}">{{ tag.title }}</a>
+                {% endfor %}
+            </div>
+        <br>
+      <p>Описание:</p>
+
+       {{ object.description }}
+         <br>
+      {% if user.is_authenticated %}
+      <p><h6>Дата загрузки: <b>{{ object.date_posted | date:"M d, Y" }}</b></h6></p>
+
+       <form method="POST">
+        {% csrf_token %}
+        <legend class="border-bottom mb-4">Оставь комментарий!</legend>
+        {{ form | crispy }}
+        <button class="btn btn-outline-info btn-block">Отправить</button>
+       </form>
+       {% else %}
+       <a class="btn btn-outline-info btn-block" href="{% url 'account_login' %}">Войди чтобы оставить комментарий!</a>
+      {% endif %}
+     </div>
+   </div>
+
+  {% for comment in comments %}
+   <div class="row mt-3">
+    <div class="col-md-8 col-sm-12 border-bottom">
+     <h5>{{ comment.user }} пишет:</h5>
+     <p>{{ comment.comment_text }}</p>
+     <p>{{ comment.timestamp }}</p>
+    </div>
+   </div>
+  {% endfor %}
+
+ </div>
+
+
+   {% endblock content %}

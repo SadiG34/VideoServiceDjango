@@ -1,0 +1,276 @@
+.video-icons {
+    font-size: 1.8rem;
+    transition: 0.3s;
+}
+
+.video-icons:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.icon-color {
+    color: #777;
+    transition: 0.3s;
+}
+
+.icon-color:hover {
+    color: #777;
+    opacity: 0.8;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.video-uploader {
+    color: #333;
+    font-weight: 800;
+    transition: 0.3s;
+}
+
+.video-uploader:hover {
+    color: #000;
+    font-weight: 800;
+    text-decoration: none;
+    transition: 0.3s;
+    cursor: pointer;
+
+}
+
+.link-text {
+    color: #333;
+    transition: .3s;
+
+}
+
+.link-text:hover {
+    color: #555;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.category-link {
+    transition: 0.3s;
+}
+
+.category-link:hover {
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.search-button {
+    border: 0;
+        background-color: rgba(0,0,0,0);
+    font-size: 1.5rem;
+    transition: 0.3s;
+}
+
+.search-button:hover {
+    color: #555;
+    transition: 0.3s;
+}
+
+.video_class {
+position:relative;
+display: flex;
+left: -180px;
+}
+
+.tags a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.container {
+background: color
+}
+
+body {
+  background: linear-gradient(to bottom, #1e272e, #333333, #555555);
+  color: white;
+
+}
+
+.card {
+  background: linear-gradient(to bottom, #1e272e, #333333);
+}
+
+.card:hover {
+  background: linear-gradient(to bottom, #333333, #555555);
+}
+
+@keyframes lights {
+  0% {
+    color: hsl(230, 40%, 80%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.2),
+      0 0 0.125em hsla(320, 100%, 60%, 0.3),
+      -1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+      1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+  }
+
+  30% {
+    color: hsl(230, 80%, 90%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.5),
+      0 0 0.125em hsla(320, 100%, 60%, 0.5),
+      -0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+      0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+  }
+
+  40% {
+    color: hsl(230, 100%, 95%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.5),
+      0 0 0.125em hsla(320, 100%, 90%, 0.5),
+      -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.2),
+      0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.4);
+  }
+
+  70% {
+    color: hsl(230, 80%, 90%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.5),
+      0 0 0.125em hsla(320, 100%, 60%, 0.5),
+      0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+      -0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+  }
+
+  100% {
+    color: hsl(230, 40%, 80%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.2),
+      0 0 0.125em hsla(320, 100%, 60%, 0.3),
+      1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+      -1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+  }
+
+}
+
+  .user-header {
+    font-weight: bold;
+    color: grey; /* устанавливаем белый цвет текста */
+    animation: lights 3s 750ms linear infinite;
+  }
+
+.subs{
+color: grey;
+}
+
+.subscrube_button {
+  font-family: inherit;
+  font-size: 16px;
+  background: royalblue;
+  color: white;
+  padding: 0.5em 0.7em;
+  padding-left: 0.7em;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.subscrube_button span {
+  display: block;
+  margin-left: 0.2em;
+  transition: all 0.3s ease-in-out;
+}
+
+.subscrube_button svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.subscrube_button:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.subscrube_button:hover svg {
+  transform: translateX(1em) rotate(360deg) scale(1.1);
+}
+
+.subscrube_button:hover span {
+  transform: translateX(4em);
+}
+
+.subscrube_button:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+
+  to {
+    transform: translateY(-0.1em);
+  }
+}
+
+.Btn {
+  width: 140px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.089);
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.leftContainer {
+  width: 60%;
+  height: 100%;
+  background-color: rgb(238, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.leftContainer .like {
+  color: white;
+  font-weight: 600;
+}
+
+.likeCount {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(238, 0, 0);
+  font-weight: 600;
+  position: relative;
+  background-color: white;
+}
+
+.likeCount::before {
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  content: "";
+  background-color: rgb(255, 255, 255);
+  transform: rotate(45deg);
+  left: -4px;
+}
+
+.Btn:hover .leftContainer {
+  background-color: rgb(219, 0, 0);
+}
+
+.Btn:active .leftContainer {
+  background-color: rgb(201, 0, 0);
+}
+
+.Btn:active .leftContainer svg {
+  transform: scale(1.15);
+  transform-origin: top;
+}

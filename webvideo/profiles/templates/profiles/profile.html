@@ -1,0 +1,42 @@
+{% extends 'videoservice/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="card col-md-6 col-sm-12 col-xs-12 d-flex flex-row align-items-center p-3 shadow">
+            {% if profile.image %}
+                <img class="rounded-circle mr-4" height="150" width="150" src="{{ profile.image.url }}">
+            {% else %}
+                <img src="{% static 'images/default_profile_pic/default.jpg' %}" width="35" height="35" class="d-inline-block rounded-circle" alt="Profile">
+            {% endif %}
+            <h1>{{ profile.user.username }}</h1>
+            {% if user.is_authenticated and user.profile %}
+                <a href="{% url 'update-profile' profile.pk %}" class="btn btn-outline-info ml-3">Редактировать профиль</a>
+            {% endif %}
+        </div>
+    </div>
+
+<div class="container">
+
+
+    <div class="row justify-content-center mt-5">
+        <div class="card col-md-6 col-sm-12 col-xs-12 p-3 shadow">
+            <h5>Имя: {{ profile.name }}</h5>
+            <h5>Страна: {{ profile.location }}</h5>
+        </div>
+    </div>
+
+    <div class="row justify-content-center my-5">
+        {% for video in videos %}
+        <div class="card col-md-3 col-sm-12 col-xs-12 p-3 shadow mr-md-3 my-3">
+            <img src="{{ video.thumbnail.url }}" class="card-img-top pt-2" alt="thumbnail">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ video.title }}</h5>
+                    <p class="card-text text-muted text-center"><span class="mr-4">{{ video.user }}</span><span>{{ video.date_posted | date:"M d, Y" }}</span></p>
+                    <a href="{% url 'video-detail' video.pk %}" class="stretched-link"></a>
+                </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
