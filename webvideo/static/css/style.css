@@ -87,11 +87,11 @@ background: color
 }
 
 .navbar {
-background: linear-gradient(to right, #434343 0%, black 100%);
+background: radial-gradient(circle at 24.1% 68.8%,rgb(50, 50, 50) 0%,  rgb(10, 10, 10) 99.4%);
 }
 
 body {
-background: radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%);
+background: radial-gradient(circle at 24.1% 68.8%,rgb(10, 10, 10) 0%,  rgb(50, 50, 50) 99.4%);
 color: white;
 
 }
