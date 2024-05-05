@@ -32,12 +32,10 @@ class Video(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,default=0, verbose_name='Пользователь')
     thumbnail = models.FileField(upload_to='uploads/thumbnails',
                                  validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg'])], verbose_name='Заставка')
-
     date_posted = models.DateTimeField(default=timezone.now)
     file = models.FileField(
         upload_to='uploads/video_files/',
-        validators=[FileExtensionValidator(allowed_extensions=['mp4'])], verbose_name='Видеофайл'
-    )
+        validators=[FileExtensionValidator(allowed_extensions=['mp4'])], verbose_name='Видеофайл')
     tag = models.ManyToManyField(VideoTag, verbose_name='Тэг')
     views = models.IntegerField(verbose_name='Количество просмотров', default=0)
     likes = models.ManyToManyField(User, related_name='Лайки')

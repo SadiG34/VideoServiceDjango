@@ -13,7 +13,7 @@ from videoservice.models import Video
 class ProfileView(View):
     def get(self, request, pk, *args, **kwargs):
         profile = get_object_or_404(Profile, pk=pk)
-        videos = Video.objects.all().filter(user=pk).order_by('date_posted')
+        videos = Video.objects.all().filter(user=pk).order_by('-date_posted')
 
         context = {
         'profile': profile,
@@ -39,7 +39,7 @@ class UpdateProfile(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = ProfileForm()  # Замените YourFormClass на ваш класс формы
+        context['form'] = ProfileForm()
         return context
 
 

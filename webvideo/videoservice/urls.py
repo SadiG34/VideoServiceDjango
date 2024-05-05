@@ -10,6 +10,6 @@ urlpatterns = [
     path('video-like/<int:pk>', VideoLike, name="video_like"),
     path('tag/<int:pk>', VideoTagList.as_view(), name='tag-list'),
     path('search/', SearchVideo.as_view(), name='video-search'),
-    path('subscribe/<int:pk>/', SubscribeUser.as_view(), name='subscribe'),
-    path('unsubscribe/<int:pk>/', UnsubscribeUser.as_view(), name='unsubscribe'),
+    path('subscribe/<int:pk>/', DetailVideo.as_view(), name='subscribe'),
+    path('unsubscribe/<int:pk>/', DetailVideo.as_view(), name='unsubscribe'),
 ]
