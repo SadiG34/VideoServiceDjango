@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             {% for video in videos %}
             <div class="card col-md-3 col-sm-12 mr-md-2 mt-5 p-3 border-0">
-                <a href="{% url 'video-detail' video.pk %}"><img src="{{ video.thumbnail.url }}" width="256" height="144"></a>
+                <a href="{% url 'video-detail' video.pk %}"><img src="{{ video.thumbnail.url }}" width="256" height="144" style="border-radius: 15px;"></a>
                 <div class="card-body">
                     <a class="link-text" href="{% url 'video-detail' video.pk %}"><h5 class="text-center" style="color: grey;">{{ video.title }}</h5></a>
                     <p class="text-center m-0">{{ video.user }}</p>
