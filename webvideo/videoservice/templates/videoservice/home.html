@@ -3,19 +3,21 @@
 
 {% block content %}
 
-	<div class="container2">
-		<div class="row justify-content-center">
+		<div class="container2">
+		<div class="row justify-content-center" >
 			{% for object in object_list %}
 			<div class="card col-md-2 mr-md-2 mt-5 p-5 border-0">
+				<div align="center">
 				<a href="{% url 'video-detail' object.pk %}">
     				<img src="{{ object.thumbnail.url }}" width="256" height="144" style="border-radius: 15px;">
 				</a>
 
 				<div class="card-body">
 					<a class="link-text" href="{% url 'video-detail' object.pk %}"><h5 class="text-center" style="color: grey;">{{ object.title }}</h5></a>
-                    <p class="text-muted text-center m-0"><b <h3 style="color: white;">User: {{ object.user }}</b></p>
-					<p class="text-muted text-center">{{ object.date_posted | date:"M d, Y" }}</p>
+                    <p class="text-muted text-center m-0"><b <h3 style="color: white; font-size: 18px;">  <img src="{{ object.user.profile.image.url }}" width="25" height="25" class="d-inline-block rounded-circle" alt="Profile">{{ object.user }}</b></p>
+					<p class="text-muted text-center"> {{ object.date_posted | date:"M d, Y" }}</p>
 				</div>
+					</div>
 			</div>
 			{% endfor %}
 		</div>

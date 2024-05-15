@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             {% for object in query_list %}
             <div class="card col-md-3 col-sm-12 mr-md-2 mt-5 p-3 border-0">
-                <a href="{% url 'video-detail' object.pk %}"><img src="{{ object.thumbnail.url }}" width="256" height="144"></a>
+                <a href="{% url 'video-detail' object.pk %}"><img src="{{ object.thumbnail.url }}" width="256" height="144" style="border-radius: 15px;"></a>
                 <div class="card-body">
                     <a class="link-text" href="{% url 'video-detail' object.pk %}"><h5 class="text-center" style="color: grey;">{{ object.title }}</h5></a>
                     <p class="text-muted text-center m-0"><b <h3 style="color: white;">User: {{ object.user }}</b></p>
